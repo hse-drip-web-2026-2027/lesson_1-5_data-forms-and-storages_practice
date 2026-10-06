@@ -17,13 +17,12 @@ const topicSelect = document.querySelector("#workshop-topic")
 
 
 // БЛОКИ 1–4
-// 1.2: замените событие click на submit.
-form.addEventListener("click", (event) => {
-  // 1.3: первой строкой остановите стандартное действие формы.
+form.addEventListener("submit", (event) => {
+  event.preventDefault()
 
   console.log("1.2. Получено событие", event.type)
 
-  // 1.3: затем покажите временное сообщение в result.
+  result.textContent = "Форма обработана без перезагрузки"
 
 
   // 3.1: создайте FormData текущей формы.

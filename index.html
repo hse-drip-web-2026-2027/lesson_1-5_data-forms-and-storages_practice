@@ -1,132 +1,121 @@
 <!doctype html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Практика по HTML-формам, FormData, JSON и Web Storage"
-    />
-    <title>Заявка на веб-мастерскую</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="page-header">
-      <a class="course-mark" href="#application-form" aria-label="Перейти к форме">
-        <span class="course-mark__number">1—5</span>
-        <span class="course-mark__text">Разработка web-интерфейсов</span>
-      </a>
 
-      <div class="lesson-label">Практика · 50 минут</div>
-    </header>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Практика по HTML-формам, FormData, JSON и Web Storage" />
+  <title>Заявка на веб-мастерскую</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-    <main class="page-shell">
-      <section class="intro" aria-labelledby="page-title">
-        <div class="intro__copy">
-          <p class="eyebrow">Формы и хранилища</p>
-          <h1 id="page-title">Заявка на веб-мастерскую</h1>
-          <p class="intro__lead">
-            Заполните форму, сохраните черновик и восстановите его после перезагрузки.
-            Интерфейс уже готов — сегодня мы программируем путь данных.
-          </p>
+<body>
+  <header class="page-header">
+    <a class="course-mark" href="#application-form" aria-label="Перейти к форме">
+      <span class="course-mark__number">1—5</span>
+      <span class="course-mark__text">Разработка web-интерфейсов</span>
+    </a>
+
+    <div class="lesson-label">Практика · 50 минут</div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro__copy">
+        <p class="eyebrow">Формы и хранилища</p>
+        <h1 id="page-title">Заявка на веб-мастерскую</h1>
+        <p class="intro__lead">
+          Заполните форму, сохраните черновик и восстановите его после перезагрузки.
+          Интерфейс уже готов — сегодня мы программируем путь данных.
+        </p>
+      </div>
+
+      <ol class="progress" aria-label="Пять этапов практики">
+        <li><span>01</span> submit</li>
+        <li><span>02</span> validation</li>
+        <li><span>03</span> FormData</li>
+        <li><span>04</span> JSON</li>
+        <li><span>05</span> storage</li>
+      </ol>
+    </section>
+
+    <section class="workspace" aria-label="Рабочая область практики">
+      <form class="application-form" id="application-form">
+        <div class="panel-heading">
+          <div>
+            <p class="panel-kicker">Новая заявка</p>
+            <h2>Данные участника</h2>
+          </div>
+          <span class="required-note">Все поля обязательны после блока 2</span>
         </div>
 
-        <ol class="progress" aria-label="Пять этапов практики">
-          <li><span>01</span> submit</li>
-          <li><span>02</span> validation</li>
-          <li><span>03</span> FormData</li>
-          <li><span>04</span> JSON</li>
-          <li><span>05</span> storage</li>
-        </ol>
-      </section>
+        <div class="field">
+          <label for="participant-name">Имя участника</label>
+          <input id="participant-name" name="name" type="text" placeholder="Например, Анна" autocomplete="name" required
+            minlength="2" />
+          <span class="field__hint">Минимальная длина появится в блоке 2.</span>
+        </div>
 
-      <section class="workspace" aria-label="Рабочая область практики">
-        <form class="application-form" id="application-form">
-          <div class="panel-heading">
-            <div>
-              <p class="panel-kicker">Новая заявка</p>
-              <h2>Данные участника</h2>
-            </div>
-            <span class="required-note">Все поля обязательны после блока 2</span>
-          </div>
+        <div class="field">
+          <label for="participant-email">Email для подтверждения</label>
+          <input id="participant-email" name="email" type="text" placeholder="anna@example.com" autocomplete="email" />
+          <span class="field__hint">Тип поля нужно уточнить во время практики.</span>
+        </div>
 
-          <div class="field">
-            <label for="participant-name">Имя участника</label>
-            <input
-              id="participant-name"
-              name="name"
-              type="text"
-              placeholder="Например, Анна"
-              autocomplete="name"
-            />
-            <span class="field__hint">Минимальная длина появится в блоке 2.</span>
-          </div>
+        <div class="field">
+          <label for="workshop-topic">Тема мастерской</label>
+          <select id="workshop-topic" name="topic">
+            <option value="">Выберите тему</option>
+            <option value="Городская мастерская">Городская мастерская</option>
+            <option value="Доступные интерфейсы">Доступные интерфейсы</option>
+            <option value="Личный сайт-портфолио">Личный сайт-портфолио</option>
+          </select>
+          <span class="field__hint">Значение будет доступно через <code>FormData</code>.</span>
+        </div>
 
-          <div class="field">
-            <label for="participant-email">Email для подтверждения</label>
-            <input
-              id="participant-email"
-              name="email"
-              type="text"
-              placeholder="anna@example.com"
-              autocomplete="email"
-            />
-            <span class="field__hint">Тип поля нужно уточнить во время практики.</span>
-          </div>
+        <div class="form-actions">
+          <button class="button button--primary" type="submit">Сохранить заявку</button>
+          <button class="button button--ghost" id="clear-draft" type="button">
+            Удалить черновик
+          </button>
+        </div>
+      </form>
 
-          <div class="field">
-            <label for="workshop-topic">Тема мастерской</label>
-            <select id="workshop-topic" name="topic">
-              <option value="">Выберите тему</option>
-              <option value="Городская мастерская">Городская мастерская</option>
-              <option value="Доступные интерфейсы">Доступные интерфейсы</option>
-              <option value="Личный сайт-портфолио">Личный сайт-портфолио</option>
-            </select>
-            <span class="field__hint">Значение будет доступно через <code>FormData</code>.</span>
-          </div>
+      <aside class="result-panel" aria-labelledby="result-title">
+        <div>
+          <p class="panel-kicker">Результат</p>
+          <h2 id="result-title">Что видит пользователь</h2>
+        </div>
 
-          <div class="form-actions">
-            <button class="button button--primary" type="submit">Сохранить заявку</button>
-            <button class="button button--ghost" id="clear-draft" type="button">
-              Удалить черновик
-            </button>
-          </div>
-        </form>
+        <div class="result-message" id="result" aria-live="polite">
+          Пока заявка не отправлена
+        </div>
 
-        <aside class="result-panel" aria-labelledby="result-title">
+        <dl class="storage-state">
           <div>
-            <p class="panel-kicker">Результат</p>
-            <h2 id="result-title">Что видит пользователь</h2>
+            <dt>localStorage</dt>
+            <dd id="local-storage-status">Локальный черновик еще не проверен</dd>
           </div>
-
-          <div class="result-message" id="result" aria-live="polite">
-            Пока заявка не отправлена
+          <div>
+            <dt>sessionStorage</dt>
+            <dd id="session-storage-status">Сессионная копия еще не создана</dd>
           </div>
+        </dl>
 
-          <dl class="storage-state">
-            <div>
-              <dt>localStorage</dt>
-              <dd id="local-storage-status">Локальный черновик еще не проверен</dd>
-            </div>
-            <div>
-              <dt>sessionStorage</dt>
-              <dd id="session-storage-status">Сессионная копия еще не создана</dd>
-            </div>
-          </dl>
+        <div class="debug-note">
+          <strong>Где смотреть данные?</strong>
+          <span>DevTools → Application → Local Storage / Session Storage</span>
+        </div>
+      </aside>
+    </section>
+  </main>
 
-          <div class="debug-note">
-            <strong>Где смотреть данные?</strong>
-            <span>DevTools → Application → Local Storage / Session Storage</span>
-          </div>
-        </aside>
-      </section>
-    </main>
+  <footer class="page-footer">
+    <span>НИУ ВШЭ · ДРИП</span>
+    <span>Один проект · пять последовательных блоков</span>
+  </footer>
 
-    <footer class="page-footer">
-      <span>НИУ ВШЭ · ДРИП</span>
-      <span>Один проект · пять последовательных блоков</span>
-    </footer>
+  <script src="script.js"></script>
+</body>
 
-    <script src="script.js"></script>
-  </body>
 </html>
