@@ -18,37 +18,54 @@ const topicSelect = document.querySelector("#workshop-topic")
 
 // БЛОКИ 1–4
 // 1.2: замените событие click на submit.
-form.addEventListener("click", (event) => {
+form.addEventListener("submit", (event) => {
   // 1.3: первой строкой остановите стандартное действие формы.
+  event.preventDefault();
 
   console.log("1.2. Получено событие", event.type)
 
   // 1.3: затем покажите временное сообщение в result.
-
+  result.textContent = "Данные отправлены"
 
   // 3.1: создайте FormData текущей формы.
-
+  const data = new FormData(form);
 
   // 3.2: получите name, email и topic через метод get.
-
+  const name = data.get("name");
+  const email = data.get("email");
+  const topic = data.get("topic");
 
   // 3.3: проверьте значения в Console и покажите подтверждение в result.
-
+  console.log("3.1. Получены данные", { name, email, topic })
 
   // 4.1: объедините три значения в объект application.
-
+  const application = {
+    name,
+    email,
+    topic
+  };
 
   // 4.2: превратите application в строку applicationJson.
-
+  const applicationJson = JSON.stringify(application);
 
   // 4.3: сохраните строку в localStorage и обновите localStorageStatus.
-
+  localStorage.setItem(STORAGE_KEY, applicationJson);
 
   // 5.3: сохраните ту же строку в sessionStorage и обновите sessionStorageStatus.
+  sessionStorage.setItem(STORAGE_KEY, applicationJson);
+
+  // 3.4: обновите result с помощью шаблонной строки.
+  result.textContent = `Спасибо, ${name}! Мы получили заявку на тему «${topic}».`
 })
 
 
 // БЛОК 5.2
 clearButton.addEventListener("click", () => {
   // Удалите обе записи, сбросьте форму и обновите три сообщения на странице.
+  localStorage.removeItem(STORAGE_KEY);
+  sessionStorage.removeItem(STORAGE_KEY);
+  form.reset();
+  result.textContent = "";
+  localStorageStatus.textContent = "";
+  sessionStorageStatus.textContent = "";
 })
